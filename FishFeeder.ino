@@ -1,7 +1,6 @@
-// Sweep
-// by BARRAGAN <http://barraganstudio.com> 
-// This example code is in the public domain.
-
+// Automatic Fish Feeder
+// @maglovato
+// created December 2013
 
 #include <Servo.h> 
  
