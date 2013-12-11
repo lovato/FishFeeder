@@ -1,6 +1,7 @@
 // Automatic Fish Feeder
 // @maglovato
 // created December 2013
+// v 1.0
 
 #include <Servo.h> 
  
