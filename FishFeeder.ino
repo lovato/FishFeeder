@@ -15,6 +15,10 @@ int porta_aberta = 145;
 int porta_fechada = 0;
 int estacionamento = 58;
 
+unsigned Hour = 0;
+unsigned Minute = 0;
+unsigned long TimeOfLastMinute = 0;
+
 void setup() 
 { 
   servoPote.attach(9);
@@ -23,15 +27,32 @@ void setup()
  
  
 void loop() 
-{ 
+{
   if (doloop)
   {
     inicializacao();
     restaurante_fish();
     despeja_comida();
     estacionar();
+    doloop = false;
   }
-  doloop = false;
+
+  unsigned long currentTime = millis();
+  if (currentTime-TimeOfLastMinute >= 60000UL)
+  {
+  Minute++;
+  doloop = true;
+  TimeOfLastMinute = currentTime;
+  if (Minute > 59)
+    {
+    Minute = 0;
+    Hour++;
+    if (Hour > 23)
+      Hour = 0;
+      doloop = true;
+    }
+  }
+
 }
 
 void inicializacao()
@@ -53,7 +74,19 @@ void despeja_comida()
 void restaurante_fish()
 {
   //funcao que abastece o mini reservatorio com comida
-  move_motor(servoPote, 1);
+  move_motor(servoPote, 20);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
+  shake(servoPote);
   shake(servoPote);
   shake(servoPote);
 }
