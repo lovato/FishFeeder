@@ -4,10 +4,10 @@
 // v 1.1
 
 #include <Servo.h> 
- 
+
 Servo servoPorta;
 Servo servoPote;
- 
+
 int pos = 0;
 boolean doloop = true;
 int pos_jogar_comida = 58;
@@ -23,13 +23,15 @@ void setup()
 { 
   servoPote.attach(9);
   servoPorta.attach(8);
+  //Serial.begin(9600);
 } 
- 
- 
+
+
 void loop() 
 {
   if (doloop)
   {
+    //Serial.println("Inicializando...");
     inicializacao();
     restaurante_fish();
     despeja_comida();
@@ -40,15 +42,20 @@ void loop()
   unsigned long currentTime = millis();
   if (currentTime-TimeOfLastMinute >= 60000UL)
   {
-  Minute++;
-  TimeOfLastMinute = currentTime;
-  if (Minute > 59)
+    //Serial.println("Minute++");
+    Minute++;
+    TimeOfLastMinute = currentTime;
+    if (Minute > 59)
     {
-    Minute = 0;
-    Hour++;
-    if (Hour > 23)
-      Hour = 0;
-      doloop = true;
+      Minute = 0;
+      //Serial.println("Hour++");
+      Hour++;
+      if (Hour > 23)
+      {
+        Hour = 0;
+        //Serial.println("Loop again");
+        doloop = true;
+      }
     }
   }
 
@@ -137,3 +144,4 @@ void shake(Servo srv)
   srv.write(originalPos);
   delay(15);
 }
+
