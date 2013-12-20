@@ -1,7 +1,7 @@
 // Automatic Fish Feeder
 // @maglovato
 // created December 2013
-// v 1.0
+// v 1.1
 
 #include <Servo.h> 
  
@@ -41,7 +41,6 @@ void loop()
   if (currentTime-TimeOfLastMinute >= 60000UL)
   {
   Minute++;
-  doloop = true;
   TimeOfLastMinute = currentTime;
   if (Minute > 59)
     {
